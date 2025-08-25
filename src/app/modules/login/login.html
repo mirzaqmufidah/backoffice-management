@@ -1,6 +1,6 @@
 <div class="login-container d-flex align-items-center justify-content-center vh-100">
     <div class="login-card p-4 shadow-lg">
-        <h2 class="text-center mb-4">Welcome Back ! helo</h2>
+        <h2 class="text-center mb-4">Welcome Back !</h2>
         <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -21,7 +21,7 @@
                     class="form-control custom-input" placeholder="password">
             </div>
 
-            <button type="submit" [disabled]="!formLogin.valid" class="btn btn-login w-100" >Login</button>
+            <button type="submit" [disabled]="!formLogin.valid" class="btn btn-login w-100">Login</button>
 
         </form>
     </div>
