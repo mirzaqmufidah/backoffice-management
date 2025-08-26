@@ -1,0 +1,30 @@
+<div class="layout bc-page">
+    <div class="sidebar" [class.collapsed]="isCollapsed">
+        <div class="logo">
+            @if(!isCollapsed){<h2>MyApp</h2>}
+            @if(isCollapsed){<h2>M</h2>}
+        </div>
+
+        <ul class="nav-links">
+            <li routerLink="/admin/employee/all" routerLinkActive="active"> <i class="bi bi-people"></i>
+                @if(!isCollapsed){<span>Employees</span>} </li>
+            <li routerLink="/login" routerLinkActive="active"> <i class="bi bi-box-arrow-right"></i>
+                @if(!isCollapsed){<span>Sign Out</span>} </li>
+        </ul>
+
+        <div class="toggle-btn" (click)="toggleSidebar()">
+            @if(!isCollapsed){
+            <i class="bi bi-chevron-left"></i>
+            }
+            @if(isCollapsed){
+            <i class="bi bi-chevron-right"></i>
+            }
+
+        </div>
+    </div>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

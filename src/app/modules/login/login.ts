@@ -22,7 +22,7 @@ export class Login {
   onSubmit() {
     if (this.formLogin.valid) {
       console.log(this.formLogin.value);
-      this.route.navigate([`/home`]);
+      this.route.navigate([`/admin`]);
     }
   }
 }

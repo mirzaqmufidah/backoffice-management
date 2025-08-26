@@ -1,14 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
-/* .btn-login {
-    color: #fff;
-    background-color: #12304F;
-    font-family: Poppins;
-    font-weight: 500;
-    font-size: 16px;
-}
+ .table tr:nth-child(even) td,
+ .table tr:nth-child(even) th {
+   background-color: #ffffff !important;
+ }
 
-.btn-login:hover {
-  background-color: inherit !important;
-  color: inherit !important;
-  border-color: inherit !important;
-} */
+ .table tr:nth-child(odd) th {
+   background-color: #25395a !important;
+   color: #ffffff;
+ }
+
+ .page-link {
+   position: relative;
+   display: block;
+   padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+   font-size: var(--bs-pagination-font-size);
+   text-decoration: none;
+   background-color: var(--bs-pagination-bg);
+   color: #1E293B;
+   border: none;
+   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+ }
+
+ .btn-gen {
+   color: #fff;
+   background-color: #12304F;
+   font-weight: bold;
+   font-size: 14px;
+   border-radius: 12px;
+   padding: 12px;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+
+ .btn-gen:disabled {
+   background: gray !important;
+   color: #ddd !important;
+   cursor: not-allowed;
+   opacity: 0.7;
+   box-shadow: none;
+   transform: none;
+ }
+
+ .btn-gen:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+   border-bottom: #12304F;
+ }

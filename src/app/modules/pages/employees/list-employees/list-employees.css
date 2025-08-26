@@ -1,0 +1,12 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    /* kalau tabel lebih lebar dari container -> scroll horizontal */
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+    /* cegah teks pecah ke bawah */
+}
+
