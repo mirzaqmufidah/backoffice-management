@@ -64,5 +64,6 @@
 
 .bc-page {
     background-color: rgba(242, 247, 251);
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
 }

@@ -1,1 +1,129 @@
-<p>detail-employee works!</p>
+<div class="title-header option-title mb-3">
+    <div class="row">
+        <div class="col">
+            <h3>{{act | uppercase}} EMPLOYEE</h3>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3 card card-table">
+    <div class="card-body p-5">
+        <form [formGroup]="formEmployee">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" formControlName="username" class="form-control" id="username"
+                            [readOnly]="act == 'detail'">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="email"
+                            [readOnly]="act == 'detail'">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                            [readOnly]="act == 'detail'">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="lastname" class="form-label">Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                            [readOnly]="act == 'detail'">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="birthDate" class="form-label">Birth Date</label>
+                        <input type="date" formControlName="birthDate" class="form-control" id="birthDate"
+                            [max]="tomorrow" [readOnly]="act == 'detail'">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="salary" class="form-label">Salary</label>
+                        <input type="text" formControlName="basicSalary" class="form-control" id="salary"
+                            [readOnly]="act == 'detail'">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        @if(act == 'update' || act == 'create'){
+                        <select class="form-select" formControlName="status" aria-label="Default select example">
+                            <option selected>Select Status</option>
+                            @for(st of status; track st.name){
+                            <option value="{{st.name}}">{{st.name}}</option>
+                            }
+                        </select>
+                        }
+                        @if(act == 'detail'){
+                        <input type="text" formControlName="status" class="form-control" id="status"
+                            [readOnly]="act == 'detail'">
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="mb-2">Group</label>
+                        @if(act == 'update' || act == 'create'){
+                        <ng-select [items]="employees" bindLabel="name" bindValue="name" class="form-control"
+                            name="employee" formControlName="group" [searchable]="true" placeholder="Cari employee...">
+                        </ng-select>
+                        }
+                        @if(act == 'detail'){
+                        <input type="text" formControlName="group" class="form-control" id="group"
+                            [readOnly]="act == 'detail'">
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row">
+                <div class="mb-3">
+                    @if(act == 'create'){
+                    <button [disabled]="!formEmployee.valid" class="me-2 btn btn-gen" (click)="createEmployee()">
+                        SAVE
+                    </button>
+                    }
+                    @if(act == 'update'){
+                    <button [disabled]="!formEmployee.valid" class="me-2 btn btn-gen" (click)="updateEmployee()">
+                        UPDATE
+                    </button>
+                    }
+                    @if(act == 'update' || act == 'create'){
+                    <button routerLink="/admin/employee/all" routerLinkActive="active" class="btn btn-cancel">
+                        CANCEL
+                    </button>
+                    }
+                    @if(act == 'detail'){
+                    <button (click)="backTo()" class="btn btn-gen">
+                        OK
+                    </button>
+                    }
+
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
