@@ -16,4 +16,13 @@ export const groupEmployee = [
     { id: 8, name: 'HR' },
     { id: 9, name: 'Product Manager' },
     { id: 10, name: 'Marketing' },
-];   
+];
+
+export const pagination = [
+    5, 10, 25, 50, 100
+]
+
+export const userLogin = [
+    { id: 1, username: 'user1', password: 'password' },
+    { id: 2, username: 'user2', password: 'password' }
+]

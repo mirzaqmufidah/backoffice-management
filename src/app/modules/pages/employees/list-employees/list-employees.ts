@@ -3,25 +3,33 @@ import { EmployeeService } from '../../../../services/employee';
 import { HttpParams } from '@angular/common/http';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { ToastComponent } from '../../../../model/toast';
+
 import { statusEmployee } from '../../../../model/model-employee';
+import { pagination } from '../../../../model/model-employee';
 
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-list-employees',
-  imports: [DatePipe, DecimalPipe, FormsModule],
+  imports: [DatePipe, DecimalPipe, FormsModule, NgClass, ToastComponent],
   templateUrl: './list-employees.html',
   styleUrl: './list-employees.css'
 })
 export class ListEmployees implements OnInit {
   @ViewChild('closeModal') closeModal: any;
+  @ViewChild('toast') toast!: ToastComponent;
 
   employees: any;
   p: number = 1;
   perpage: any = 10;
   totalpage: number = 0;
+  sortDown: boolean = true;
+  sortBy: any;
+  order: any;
 
-  numbers = Array.from({ length: 10 }, (_, i) => i + 1);
+  numbers = pagination;
   status = statusEmployee;
 
   username: any;
@@ -38,6 +46,8 @@ export class ListEmployees implements OnInit {
   }
 
   ngOnInit(): void {
+    history.state['act'] == 'detail' ? this.username = history.state['username'] : this.username = null;
+    history.state['act'] == 'detail' ? this.statusSelected = history.state['status'] : this.statusSelected = null;
     this.getEmployees();
   }
 
@@ -57,6 +67,9 @@ export class ListEmployees implements OnInit {
     params = params.append('perPage', this.perpage);
     this.username ? params = params.append('username', this.username) : '';
     this.statusSelected ? params = params.append('status', this.statusSelected) : '';
+    this.sortBy ? params = params.append('sortBy', this.sortBy) : '';
+    this.order ? params = params.append('order', this.order) : '';
+
     this.employeeService.getAllEmployee(params).subscribe({
       next: (res: any) => {
         this.employees = res.data;
@@ -66,7 +79,8 @@ export class ListEmployees implements OnInit {
           this.enableData = true;
           this.idEmployee = res.data[0].id;
         }
-        this.totalpage = Math.ceil(res.total / this.p);
+        this.totalpage = Math.ceil(res.total / this.perpage);
+        console.log(this.totalpage);
       }
     })
   }
@@ -77,31 +91,30 @@ export class ListEmployees implements OnInit {
         next: (res: any) => {
           sessionStorage.removeItem('id');
           this.closeModal.nativeElement.click();
+          this.toast.open('Deleted successfull', 'danger');
           this.getEmployees();
         }
       }) : '';
   }
 
-  // searchEmployee() {
-
-
-  //   this.employeeService.searchEmployee(params).subscribe({
-  //     next: (res: any) => {
-  //       this.employees = res.data;
-  //       this.totalData = res.total;
-
-  //       if (res.total == 1) {
-  //         this.enableData = true;
-  //         this.idEmployee = res.data[0].id;
-  //       }
-  //       this.totalpage = Math.ceil(res.total / this.p);
-  //     }
-  //   })
-  // }
+  sortEmployeeBy(column: string) {
+    if (this.sortBy === column) {
+      // toggle arah sort
+      this.sortDown = !this.sortDown;
+      this.order = this.sortDown ? 'desc' : 'asc';
+    } else {
+      // kolom baru, reset jadi asc
+      this.sortBy = column;
+      this.sortDown = false;
+      this.order = 'asc';
+    }
+    this.getEmployees();
+  }
 
   resetFilter() {
     this.username = null;
     this.statusSelected = null;
+    this.getEmployees();
   }
 
   getPerPage(e: any) {

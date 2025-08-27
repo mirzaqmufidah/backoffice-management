@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,15 +11,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { statusEmployee } from '../../../../model/model-employee';
 import { groupEmployee } from '../../../../model/model-employee';
+import { ToastComponent } from '../../../../model/toast';
 
 import { EmployeeService } from '../../../../services/employee';
 @Component({
   selector: 'app-detail-employee',
-  imports: [UpperCasePipe, FormsModule, CommonModule, NgSelectModule, RouterModule, ReactiveFormsModule],
+  imports: [UpperCasePipe, FormsModule, CommonModule, NgSelectModule, RouterModule, ReactiveFormsModule, ToastComponent],
   templateUrl: './detail-employee.html',
   styleUrl: './detail-employee.css'
 })
 export class DetailEmployee implements OnInit {
+  @ViewChild('toast') toast!: ToastComponent;
+
   act: any;
   id: any;
   tomorrow: any;
@@ -34,7 +37,7 @@ export class DetailEmployee implements OnInit {
     username: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     birthDate: new FormControl('', [Validators.required]),
     basicSalary: new FormControl('', [Validators.required]),
     status: new FormControl('', [Validators.required]),
@@ -105,8 +108,6 @@ export class DetailEmployee implements OnInit {
     });
   }
 
-
-
   setValidator() {
     if (this.act === 'update') {
       this.formEmployee.get('id')?.setValidators([Validators.required]);
@@ -135,9 +136,16 @@ export class DetailEmployee implements OnInit {
 
   createEmployee() {
     let body = this.formEmployee.value;
+    const salaryUpdated = this.removeDots(String(this.formEmployee.get('basicSalary')?.value));
+    body.basicSalary = salaryUpdated;
+    console.log(body);
     this.employeeService.postEmployee(body).subscribe({
-      next: (res: any) => {
-        this.router.navigate([`/admin/employee/all`])
+      next: async (res: any) => {
+        await this.toast.openWithRoute('Created employee successfull', 'warning');
+        this.router.navigate([`/admin/employee/all`]);
+      },
+      error: () => {
+        this.toast.open('Failed to create employee', 'danger');
       }
     })
   }
@@ -148,7 +156,8 @@ export class DetailEmployee implements OnInit {
     body.basicSalary = salaryUpdated;
     console.log(body);
     this.employeeService.updateEmployee(this.id, body).subscribe({
-      next: (res: any) => {
+      next: async (res: any) => {
+        await this.toast.openWithRoute('Updated employee successfull', 'warning');
         this.router.navigate([`/admin/employee/all`])
       }
     })

@@ -1,5 +1,5 @@
 <div class="layout bc-page">
-    <div class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar" [ngClass]="{'collapsed': isCollapsed, 'open': sidebarOpen}">
         <div class="logo">
             @if(!isCollapsed){<h2>MyApp</h2>}
             @if(isCollapsed){<h2>M</h2>}
@@ -24,6 +24,11 @@
     </div>
 
     <div class="content">
+        <!-- Hamburger menu (muncul di mobile) -->
+        <div class="hamburger" (click)="toggleMobileSidebar()">
+            <i class="bi bi-list"></i>
+        </div>
+
         <router-outlet></router-outlet>
     </div>
 

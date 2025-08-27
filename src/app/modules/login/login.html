@@ -9,7 +9,7 @@
 
                 @if (formLogin.get('username')?.touched && formLogin.get('username')?.invalid){
                 @if (formLogin.get('username')?.errors?.['required']) {
-                <div class="text-danger small my-1">Username is required</div>
+                <div class="text-danger small my-1"><b>Username is required</b></div>
                 }
                 }
 
@@ -19,9 +19,18 @@
                 <label for="password" class="form-label">Password</label>
                 <input name="password" type="password" id="password" formControlName="password"
                     class="form-control custom-input" placeholder="password">
+
+                @if (formLogin.get('password')?.touched && formLogin.get('password')?.invalid){
+                @if (formLogin.get('password')?.errors?.['required']) {
+                <div class="text-danger small my-1"><b>Password is required</b></div>
+                }
+                }
             </div>
 
-            <button type="submit" [disabled]="!formLogin.valid" class="mt-1 btn btn-login w-100">Login</button>
+            <div class="text-danger small my-1"><b>{{errorMessage}}</b></div>
+
+
+            <button type="submit" [disabled]="!formLogin.valid" class="mt-2 btn btn-login w-100">Login</button>
 
         </form>
     </div>

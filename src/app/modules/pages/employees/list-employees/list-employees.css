@@ -10,3 +10,8 @@
     /* cegah teks pecah ke bawah */
 }
 
+/* toast.component.css */
+.alert {
+    min-width: 250px;
+    z-index: 1055;
+}

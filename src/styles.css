@@ -75,3 +75,8 @@
   border-color: #ca130d;
   color: #ca130d;
 }
+
+a {
+  color: inherit !important;
+  text-decoration: none;
+}
