@@ -78,8 +78,8 @@
     overflow-y: auto;
 }
 
-/* Hamburger button (mobile) */
-.hamburger {
+/* toggle button (mobile) */
+.toggle-mobile {
     display: none;
     font-size: 26px;
     cursor: pointer;
@@ -125,8 +125,8 @@
         /* optional */
     }
 
-    /* Show hamburger */
-    .hamburger {
+    /* Show toggle */
+    .toggle-mobile {
         display: block;
     }
 
