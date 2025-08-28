@@ -5,7 +5,7 @@
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input name="username" id="username" formControlName="username" class="form-control custom-input"
-                    placeholder="username">
+                    placeholder="username" autocomplete="username">
 
                 @if (formLogin.get('username')?.touched && formLogin.get('username')?.invalid){
                 @if (formLogin.get('username')?.errors?.['required']) {
@@ -18,7 +18,7 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input name="password" type="password" id="password" formControlName="password"
-                    class="form-control custom-input" placeholder="password">
+                    class="form-control custom-input" placeholder="password" autocomplete="current-password">
 
                 @if (formLogin.get('password')?.touched && formLogin.get('password')?.invalid){
                 @if (formLogin.get('password')?.errors?.['required']) {

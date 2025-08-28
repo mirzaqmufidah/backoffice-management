@@ -1,8 +1,8 @@
 <div class="layout bc-page">
     <div class="sidebar" [ngClass]="{'collapsed': isCollapsed, 'open': sidebarOpen}">
         <div class="logo">
-            @if(!isCollapsed){<h2>MyApp</h2>}
-            @if(isCollapsed){<h2>M</h2>}
+            @if(!isCollapsed){<h2>{{username | titlecase}} </h2>}
+            @if(isCollapsed){<h2>{{username[0] | uppercase}} </h2>}
         </div>
 
         <ul class="nav-links">

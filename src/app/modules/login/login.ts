@@ -34,7 +34,8 @@ export class Login {
       } else if (user.password !== this.formLogin.value.password) {
         this.errorMessage = 'Password incorrect';
       } else {
-        this.route.navigate([`/admin`]);
+        sessionStorage.setItem('username', this.formLogin.value.username!)
+        this.route.navigate([`/admin/employee/all`]);
       }
 
     }

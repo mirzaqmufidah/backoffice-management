@@ -15,3 +15,117 @@
     min-width: 250px;
     z-index: 1055;
 }
+
+
+
+/* Global layout */
+.layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #2c3e50;
+    color: #fff;
+    width: 240px;
+    min-width: 240px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+    /* hanya untuk desktop */
+    min-width: 70px;
+}
+
+.sidebar .logo {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.sidebar .nav-links li {
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.sidebar .nav-links li:hover,
+.sidebar .nav-links li.active {
+    background-color: #34495e;
+}
+
+.sidebar .nav-links i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.sidebar.collapsed .nav-links span {
+    display: none;
+}
+
+/* Toggle button (desktop collapse) */
+.toggle-btn {
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Content area */
+.content {
+    flex: 1;
+    padding: 70px;
+    background: #f9f9f9;
+    overflow-y: auto;
+}
+
+/* Hamburger button (mobile) */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.width-25 {
+    width: 250px;
+    max-width: 100%;
+}
+
+/* ====================
+   Responsive Design
+   ==================== */
+
+/* Tablet & Mobile */
+@media (max-width: 1000px) {
+    .width-25 {
+        width: 70%;
+    }
+}
+
+/* Mobile kecil */
+@media (max-width: 480px) {
+    .width-25 {
+        width: 100%;
+    }
+
+}

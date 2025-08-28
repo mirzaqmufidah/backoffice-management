@@ -15,7 +15,7 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" formControlName="username" class="form-control" id="username"
+                        <input type="text" formControlName="username" class="form-control custom-readonly" id="username"
                             [readOnly]="act == 'detail'">
                         @if (formEmployee.get('username')?.touched &&
                         formEmployee.get('username')?.errors?.['required']) {
@@ -25,7 +25,7 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" formControlName="email" class="form-control" id="email"
+                        <input type="email" formControlName="email" class="form-control custom-readonly" id="email"
                             [readOnly]="act == 'detail'">
                         @if (formEmployee.get('email')?.touched) {
                         @if (formEmployee.get('email')?.errors?.['required']) {
@@ -43,8 +43,8 @@
                 <div class="col-6">
                     <div class="mb-6">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" formControlName="firstName" class="form-control" id="firstName"
-                            [readOnly]="act == 'detail'">
+                        <input type="text" formControlName="firstName" class="form-control custom-readonly"
+                            id="firstName" [readOnly]="act == 'detail'">
                         @if (formEmployee.get('firstName')?.touched &&
                         formEmployee.get('firstName')?.errors?.['required']) {
                         <div class="text-danger small my-1">First Name is required</div> }
@@ -53,7 +53,7 @@
                 <div class="col-6">
                     <div class="mb-6">
                         <label for="lastname" class="form-label">Last Name</label>
-                        <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                        <input type="text" formControlName="lastName" class="form-control custom-readonly" id="lastName"
                             [readOnly]="act == 'detail'">
                         @if (formEmployee.get('lastName')?.touched &&
                         formEmployee.get('lastName')?.errors?.['required']) {
@@ -65,8 +65,8 @@
                 <div class="col-12">
                     <div class="mb-3 mt-4">
                         <label for="birthDate" class="form-label">Birth Date</label>
-                        <input type="date" formControlName="birthDate" class="form-control" id="birthDate"
-                            [max]="tomorrow" [readOnly]="act == 'detail'">
+                        <input type="date" formControlName="birthDate" class="form-control custom-readonly"
+                            id="birthDate" [max]="tomorrow" [readOnly]="act == 'detail'">
                         @if (formEmployee.get('birthDate')?.touched &&
                         formEmployee.get('birthDate')?.errors?.['required']) {
                         <div class="text-danger small my-1">Birth Date is required</div> }
@@ -77,8 +77,8 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label for="salary" class="form-label">Salary</label>
-                        <input type="text" formControlName="basicSalary" class="form-control" id="salary"
-                            [readOnly]="act == 'detail'">
+                        <input type="text" formControlName="basicSalary" class="form-control custom-readonly"
+                            id="salary" [readOnly]="act == 'detail'">
                         @if (formEmployee.get('basicSalary')?.touched &&
                         formEmployee.get('basicSalary')?.errors?.['required']) {
                         <div class="text-danger small my-1">Salary is required</div> }
@@ -101,7 +101,7 @@
                         <div class="text-danger small my-1">Status is required</div> }
                         }
                         @if(act == 'detail'){
-                        <input type="text" formControlName="status" class="form-control" id="status"
+                        <input type="text" formControlName="status" class="form-control custom-readonly" id="status"
                             [readOnly]="act == 'detail'">
                         }
                     </div>
@@ -121,7 +121,7 @@
                         <div class="text-danger small my-1">Group is required</div> }
                         }
                         @if(act == 'detail'){
-                        <input type="text" formControlName="group" class="form-control" id="group"
+                        <input type="text" formControlName="group" class="form-control custom-readonly" id="group"
                             [readOnly]="act == 'detail'">
                         }
                     </div>
@@ -146,7 +146,7 @@
                     </button>
                     }
                     @if(act == 'detail'){
-                    <button (click)="backTo()" class="btn btn-gen">
+                    <button (click)="backTo()" class="btn btn-gen w-75">
                         OK
                     </button>
                     }

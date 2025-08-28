@@ -104,7 +104,7 @@ export class DetailEmployee implements OnInit {
     // Step 4: format ulang dengan maksimal 6 desimal
     return num.toLocaleString('id-ID', {
       minimumFractionDigits: 0,
-      maximumFractionDigits: 5
+      maximumFractionDigits: 2
     });
   }
 
@@ -127,7 +127,7 @@ export class DetailEmployee implements OnInit {
         this.formEmployee.get('lastName')?.setValue(res.lastName);
         this.formEmployee.get('birthDate')?.setValue(res.birthDate.split('T')[0]);
         this.formEmployee.get('email')?.setValue(res.email);
-        this.formEmployee.get('basicSalary')?.setValue(this.formatAmount1(String(res.basicSalary)), { emitEvent: false });
+        this.act == 'detail' ? this.formEmployee.get('basicSalary')?.patchValue(`Rp ${this.formatAmount1(String(res.basicSalary))}`) : this.formEmployee.get('basicSalary')?.setValue(this.formatAmount1(String(res.basicSalary)), { emitEvent: false });
         this.formEmployee.get('status')?.setValue(res.status);
         this.formEmployee.get('group')?.setValue(res.group);
       }

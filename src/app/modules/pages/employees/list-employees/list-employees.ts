@@ -80,7 +80,6 @@ export class ListEmployees implements OnInit {
           this.idEmployee = res.data[0].id;
         }
         this.totalpage = Math.ceil(res.total / this.perpage);
-        console.log(this.totalpage);
       }
     })
   }
